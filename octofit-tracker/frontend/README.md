@@ -23,8 +23,6 @@ export default defineConfig([
     extends: [
       // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
       // Alternatively, use this for stricter rules
       tseslint.configs.strictTypeChecked,
       // Optionally, add this for stylistic rules
@@ -63,6 +61,25 @@ export default defineConfig([
       reactDom.configs.recommended,
     ],
     languageOptions: {
+  ## Codespaces API configuration
+
+  When running in GitHub Codespaces define `VITE_CODESPACE_NAME` so the frontend can talk to the backend.
+
+  If `VITE_CODESPACE_NAME` is set, API requests will target:
+
+  ```
+  https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/
+  ```
+
+  If the variable is not set, the app falls back to `http://localhost:8000/api/`.
+
+  To provide `VITE_CODESPACE_NAME` locally, create a `.env.local` in this folder with:
+
+  ```
+  VITE_CODESPACE_NAME=your-codespace-name
+  ```
+
+  Note: Vite only exposes env vars prefixed with `VITE_` to the client.
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,

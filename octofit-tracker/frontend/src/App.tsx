@@ -1,5 +1,10 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import Users from './components/Users'
+import Activities from './components/Activities'
+import Teams from './components/Teams'
+import Workouts from './components/Workouts'
+import Leaderboard from './components/Leaderboard'
 
 function Home() {
   return (
@@ -22,14 +27,7 @@ function Profile() {
   )
 }
 
-function Leaderboard() {
-  return (
-    <div className="container py-5">
-      <h1>Leaderboard</h1>
-      <p>Track team rankings and performance metrics.</p>
-    </div>
-  )
-}
+// placeholder removed: use `Leaderboard` component from ./components/Leaderboard
 
 function App() {
   return (
@@ -67,6 +65,26 @@ function App() {
                   Leaderboard
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users">
+                  Users
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/activities">
+                  Activities
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/teams">
+                  Teams
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/workouts">
+                  Workouts
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -76,6 +94,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="/workouts" element={<Workouts />} />
       </Routes>
     </div>
   )
