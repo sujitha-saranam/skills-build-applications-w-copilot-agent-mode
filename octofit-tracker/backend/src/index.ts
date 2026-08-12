@@ -1,5 +1,5 @@
 import express from 'express';
-import db from './config/database';
+import db, { connectDB } from './config/database';
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';
 import activitiesRouter from './routes/activities';
@@ -24,6 +24,8 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'OctoFit Tracker API' });
 });
 
-app.listen(port, () => {
-  console.log(`OctoFit Tracker backend listening on http://localhost:${port}`);
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`OctoFit Tracker backend listening on http://localhost:${port}`);
+  });
 });
