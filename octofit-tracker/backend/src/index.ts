@@ -9,11 +9,8 @@ import leaderboardRouter from './routes/leaderboard';
 const app = express();
 const port = Number(process.env.PORT || 8000);
 
-// Codespaces-aware base URL (fallback to localhost)
-const codespaceName = process.env.CODESPACE_NAME;
-const baseUrl = codespaceName
-  ? `https://${codespaceName}-${port}.app.github.dev`
-  : `http://localhost:${port}`;
+import CODESPACE_URL, { CODESPACE_NAME } from './server';
+const baseUrl = CODESPACE_URL;
 
 app.use(express.json());
 
@@ -50,5 +47,6 @@ connectDB().then(() => {
   app.listen(port, () => {
     console.log(`OctoFit Tracker backend listening on http://localhost:${port}`);
     console.log(`API base URL: ${baseUrl}`);
+    if (CODESPACE_NAME) console.log(`Detected CODESPACE_NAME=${CODESPACE_NAME}`);
   });
 });
